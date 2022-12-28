@@ -94,12 +94,12 @@ func scrapeBscScan(url string, c *http.Client) string {
 
 	req, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
-		log.Fatal("(64) Error creating new request", err)
+		log.Fatal("Error creating new request to BSC", err)
 	}
 
 	resp, err := c.Do(req)
 	if err != nil {
-		log.Fatal("Error getting response:", err)
+		log.Fatal("Error getting response from BSC:", err)
 	}
 
 	defer resp.Body.Close()
@@ -128,20 +128,20 @@ func queryTronGrid(url string, c *http.Client) TronResponse {
 
 	resp, err := c.Do(req)
 	if err != nil {
-		log.Fatal("Error sending request:", err)
+		log.Fatal("Error sending request to TronGrid:", err)
 	}
 
 	defer resp.Body.Close()
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Fatal("Error reading response body:", err)
+		log.Fatal("Error reading response body from TronGrid:", err)
 	}
 
 	var response TronResponse
 	err = json.Unmarshal(body, &response)
 	if err != nil {
-		log.Fatal("(84) Error unmarshalling json response:", err)
+		log.Fatal("Error unmarshalling json response from TronGrid:", err)
 	}
 
 	return response
@@ -162,7 +162,7 @@ func queryTron(tronUrl, tronUser, tronPass string, c *http.Client) TronResponse 
 	resp, err := c.Do(req)
 
 	if err != nil {
-		log.Fatal("Error sending request:", err)
+		log.Fatal("Error sending request to hosted TRX fullnode:", err)
 	}
 
 	defer resp.Body.Close()
@@ -170,13 +170,13 @@ func queryTron(tronUrl, tronUser, tronPass string, c *http.Client) TronResponse 
 	body, err := ioutil.ReadAll(resp.Body)
 
 	if err != nil {
-		log.Fatal("Error reading response body:", err)
+		log.Fatal("Error reading response body from", tronUrl, " ERR:", err)
 	}
 
 	var response TronResponse
 	err = json.Unmarshal(body, &response)
 	if err != nil {
-		log.Fatal("(94) Error unmarshalling json response:", err)
+		log.Fatal("Error unmarshalling json response from", tronUrl, " ERR:", err)
 	}
 
 	return response
@@ -205,7 +205,7 @@ func queryEthBased(url, user, pass string, c *http.Client) EthBasedResponse {
 	resp, err := c.Do(req)
 
 	if err != nil {
-		log.Fatal("Error getting response:", err)
+		log.Fatal("Error getting response from", url, " ERR:", err)
 	}
 
 	defer resp.Body.Close()
@@ -213,14 +213,14 @@ func queryEthBased(url, user, pass string, c *http.Client) EthBasedResponse {
 	body, err = ioutil.ReadAll(resp.Body)
 
 	if err != nil {
-		log.Fatal("Error reading response body:", err)
+		log.Fatal("Error reading response body from", url, " ERR:", err)
 	}
 
 	var response EthBasedResponse
 
 	err = json.Unmarshal(body, &response)
 	if err != nil {
-		log.Fatal("(141) Error unmarshalling json response:", err)
+		log.Fatal("Error unmarshalling json response from", url, " ERR:", err)
 	}
 
 	return response
