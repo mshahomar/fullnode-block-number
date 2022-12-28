@@ -25,7 +25,7 @@ var (
 	tronTwo      string
 	tronUsername string
 	tronPassword string
-	bnbUrl       string
+	bnbOne       string
 	bnbUsername  string
 	bnbPassword  string
 	ethOne       string
@@ -273,7 +273,7 @@ func main() {
 	tronTwo = os.Getenv("TRONTWO")
 	tronUsername = os.Getenv("TRONUSER")
 	tronPassword = os.Getenv("TRONPASS")
-	bnbUrl = os.Getenv("BNBURL")
+	bnbOne = os.Getenv("BNBONE")
 	bnbUsername = os.Getenv("BNBUSER")
 	bnbPassword = os.Getenv("BNBPASS")
 	ethOne = os.Getenv("ETHONE")
@@ -292,7 +292,7 @@ func main() {
 	respTronOne := queryTron(tronOne, tronUsername, tronPassword, c)
 	respTronTwo := queryTron(tronTwo, tronUsername, tronPassword, c)
 	respTronGrid := queryTronGrid(tronGridUrl, c)
-	respBnbOne := queryEthBased(bnbUrl, bnbUsername, bnbPassword, c)
+	respBnbOne := queryEthBased(bnbOne, bnbUsername, bnbPassword, c)
 	respEthOne := queryEthBased(ethOne, ethUsername, ethPassword, c)
 	bscLatestBlock := scrapeBscScan(bscScanUrl, c)
 	bscLastBlock, _ := strconv.ParseInt(bscLatestBlock, 10, 0)
