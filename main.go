@@ -237,20 +237,18 @@ func HexToInt64(resultStr string) int64 {
 func formatDecimalToString(num interface{}) string {
 	p := message.NewPrinter(language.English)
 
-	if s, ok := num.(string); ok {
-		i, _ := strconv.ParseInt(s, 10, 0)
-		return p.Sprintf("%d\n", i)
-	} else {
-		switch num.(type) {
-		case int:
-			return p.Sprintf("%d\n", num)
-		case int64:
-			return p.Sprintf("%d\n", num)
-		case float64:
-			return p.Sprintf("%f\n", num)
-		default:
-			return p.Sprintf("%v\n", num)
-		}
+	switch t := num.(type) {
+	case string:
+	    i, _ := strconv.ParseInt(t, 10, 0)
+		  return p.Sprintf("%d\n", i)
+	case int:
+	    return p.Sprintf("%d\n", t)
+	case int64:
+	    return p.Sprintf("%d\n", t)
+	case float64:
+	    return p.Sprintf("%.3f\n", t)
+	default:
+	    return p.Sprintf("%v\n", t)
 	}
 
 }
