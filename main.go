@@ -248,7 +248,8 @@ func formatDecimalToString(num interface{}) string {
 	case float64:
 	    return p.Sprintf("%.3f\n", t)
 	default:
-	    return p.Sprintf("%v\n", t)
+		  // unsupported type
+		  return p.Sprintf("unsupported type: %T\n", t)
 	}
 
 }
